@@ -12,23 +12,35 @@ form.addEventListener('submit', (e) => {
 })
 
 async function findUser(user) {
-   const response = await fetch(`https://api.github.com/users/${user}`)
+    try {
+        const response = await fetch(`https://api.github.com/users/${user}`)
 
-   const jsonFormat = await response.json()
+        const jsonFormat = await response.json()
 
-   showDatas(jsonFormat)
+        showDatas(jsonFormat)
+    } catch (error) {
+        alert('erro ao consultar a API')
+    }
 }
 
 function showDatas(user) {
-    const h3 = document.createElement('h3')
-    h3.setAttribute('class', 'text-center')
-    h3.innerHTML = `nome: ${user.name}`
+    try {
+        if (user.name === undefined) {
+            throw Error('usuario não encontrado')
+        } else {
+            const h3 = document.createElement('h3')
+            h3.setAttribute('class', 'text-center')
+            h3.innerHTML = `nome: ${user.name}`
 
-    const img = document.createElement('img')
-    img.setAttribute('src', `${user.avatar_url}`)
-    img.setAttribute('alt', 'foto do usuario')
-    img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
+            const img = document.createElement('img')
+            img.setAttribute('src', `${user.avatar_url}`)
+            img.setAttribute('alt', 'foto do usuario')
+            img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
-    div.appendChild(h3)
-    div.appendChild(img)
+            div.appendChild(h3)
+            div.appendChild(img)
+        }
+    } catch (error) {
+        alert(error.message)
+    }
 }
