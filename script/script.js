@@ -9,26 +9,22 @@ form.addEventListener('submit', (e) => {
     const user = document.querySelector('input#user').value
 
     findUser(user)
+    findRepositories(user)
 })
 
 async function findUser(user) {
     try {
         const response_users = await fetch(`https://api.github.com/users/${user}`)
-        const response_repositories = await fetch(`https://api.github.com/users/${user}/repos`)
 
         const jsonFormatUsers = await response_users.json()
-        const jsonFormatRepos = await response_repositories.json()
 
-        console.log(jsonFormatRepos)
-        showDatas(jsonFormatUsers)
-        show_repositories(jsonFormatRepos)
+        show_user_data(jsonFormatUsers)
     } catch (error) {
         alert('erro ao consultar a API')
     }
 }
 
-
-function showDatas(user) {
+function show_user_data(user) {
     try {
         if (user.name === undefined) {
             throw Error('usuario não encontrado')
@@ -50,7 +46,19 @@ function showDatas(user) {
     }
 }
 
-function show_repositories(repos) {
+async function findRepositories(user) {
+    try {
+        const response_users = await fetch(`https://api.github.com/users/${user}/repos`)
+
+        const jsonFormatRepos = await response_users.json()
+
+        show_data_repositories(jsonFormatRepos)
+    } catch (error) {
+        alert('erro ao consultar a API')
+    }
+}
+
+function show_data_repositories(repos) {
     const ul = document.querySelector('ul')
     ul.innerHTML = ''
     const h4 = document.querySelector('h4').style.display = 'inline'
