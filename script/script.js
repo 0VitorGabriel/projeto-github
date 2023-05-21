@@ -7,21 +7,26 @@ form.addEventListener('submit', (e) => {
     div.innerHTML = ''
 
     const user = document.querySelector('input#user').value
-    
+
     findUser(user)
 })
 
 async function findUser(user) {
     try {
-        const response = await fetch(`https://api.github.com/users/${user}`)
+        const response_users = await fetch(`https://api.github.com/users/${user}`)
+        const response_repositories = await fetch(`https://api.github.com/users/${user}/repos`)
 
-        const jsonFormat = await response.json()
+        const jsonFormatUsers = await response_users.json()
+        const jsonFormatRepos = await response_repositories.json()
 
-        showDatas(jsonFormat)
+        console.log(jsonFormatRepos)
+        showDatas(jsonFormatUsers)
+        show_repositories(jsonFormatRepos)
     } catch (error) {
         alert('erro ao consultar a API')
     }
 }
+
 
 function showDatas(user) {
     try {
@@ -37,19 +42,28 @@ function showDatas(user) {
             img.setAttribute('alt', 'foto do usuario')
             img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
-            const a = document.createElement('a')
-            a.setAttribute('href', '.././pages/repositorios.html')
-
-            const button = document.createElement('button')
-            button.innerHTML = 'ver repositórios'
-            button.setAttribute('class', 'btn btn-success mx-auto d-block ')
-            
-            a.appendChild(button)
-            
             div.appendChild(h3)
             div.appendChild(img)
-            div.appendChild(a)
         }
+    } catch (error) {
+        alert(error.message)
+    }
+}
+
+function show_repositories(repos) {
+    const ul = document.querySelector('ul')
+    ul.innerHTML = ''
+    const h4 = document.querySelector('h4').style.display = 'inline'
+
+    try {
+        repos.map((repos) => {
+            const li = document.createElement('li')
+
+            li.innerHTML = `${repos.name}`
+
+            ul.appendChild(li)
+        })
+        
     } catch (error) {
         alert(error.message)
     }
