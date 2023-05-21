@@ -37,8 +37,18 @@ function showDatas(user) {
             img.setAttribute('alt', 'foto do usuario')
             img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
+            const a = document.createElement('a')
+            a.setAttribute('href', '.././pages/repositorios.html')
+
+            const button = document.createElement('button')
+            button.innerHTML = 'ver repositórios'
+            button.setAttribute('class', 'btn btn-success mx-auto d-block ')
+            
+            a.appendChild(button)
+            
             div.appendChild(h3)
             div.appendChild(img)
+            div.appendChild(a)
         }
     } catch (error) {
         alert(error.message)
