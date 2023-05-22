@@ -38,6 +38,16 @@ function show_user_data(user) {
             img.setAttribute('alt', 'foto do usuario')
             img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
+            const divFollowing = document.createElement('p')
+            divFollowing.innerHTML = `seguindo: ${user.following}`
+            divFollowing.setAttribute('style', 'float: left;')
+
+            const divFollowers = document.createElement('p')
+            divFollowers.innerHTML = `seguidores: ${user.followers}`
+            divFollowers.setAttribute('style', 'float: right;')
+
+            div.appendChild(divFollowing)
+            div.appendChild(divFollowers)
             div.appendChild(h3)
             div.appendChild(img)
         }
