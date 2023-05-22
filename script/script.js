@@ -31,7 +31,8 @@ function show_user_data(user) {
         } else {
             const h3 = document.createElement('h3')
             h3.setAttribute('class', 'text-center')
-            h3.innerHTML = `nome: ${user.name}`
+            h3.innerHTML = `login: ${user.login}`
+            console.log(user)
 
             const img = document.createElement('img')
             img.setAttribute('src', `${user.avatar_url}`)
@@ -52,7 +53,7 @@ function show_user_data(user) {
             div.appendChild(img)
         }
     } catch (error) {
-        alert(error.message)
+        div.innerHTML = error.message
     }
 }
 
