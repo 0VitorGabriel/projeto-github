@@ -26,7 +26,7 @@ async function findUser(user) {
 
 function show_user_data(user) {
     try {
-        if (user.name === undefined) {
+        if (user.login === undefined) {
             throw Error('usuario não encontrado')
         } else {
             const h3 = document.createElement('h3')
@@ -53,7 +53,7 @@ function show_user_data(user) {
             div.appendChild(img)
         }
     } catch (error) {
-        div.innerHTML = error.message
+        div.innerHTML = `<p style="text-align: center;">${error.message}</p>`
     }
 }
 
@@ -70,11 +70,11 @@ async function findRepositories(user) {
 }
 
 function show_data_repositories(repos) {
-    const ul = document.querySelector('ul')
-    ul.innerHTML = ''
-    const h4 = document.querySelector('h4').style.display = 'inline'
-
     try {
+        const ul = document.querySelector('ul')
+        ul.innerHTML = ''
+        const h4 = document.querySelector('h4').style.display = 'inline'
+
         repos.map((repos) => {
             const li = document.createElement('li')
 
@@ -84,6 +84,8 @@ function show_data_repositories(repos) {
         })
         
     } catch (error) {
-        alert(error.message)
+        const divRepositories = document.querySelector('div#repositories')
+
+        divRepositories.innerHTML = 'nenhum repositório encontrado'
     }
 }
