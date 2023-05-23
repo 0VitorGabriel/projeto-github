@@ -7,9 +7,10 @@ form.addEventListener('submit', (e) => {
     div.innerHTML = ''
 
     const user = document.querySelector('input#user').value
+    let userFormatUrl = String(user).replace(' ', '+')
 
-    findUser(user)
-    findRepositories(user)
+    findUser(userFormatUrl)
+    findRepositories(userFormatUrl)
 })
 
 async function findUser(user) {
