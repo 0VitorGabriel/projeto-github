@@ -6,8 +6,8 @@ form.addEventListener('submit', (e) => {
 
     div.innerHTML = ''
 
-    const user = document.querySelector('input#user').value
-    let userFormatUrl = String(user).replace(' ', '+')
+    const user = document.querySelector('input#user')
+    let userFormatUrl = String(user.value).replace(' ', '+')
 
     findUser(userFormatUrl)
     findRepositories(userFormatUrl)
@@ -37,22 +37,22 @@ function show_user_data(user) {
     }
 }
 
-function createElementsUser(user) {
+function createElementsUser(DatasUser) {
     const h3 = document.createElement('h3')
     h3.setAttribute('class', 'text-center')
-    h3.innerHTML = `login: ${user.login}`
+    h3.innerHTML = `login: ${DatasUser.login}`
 
     const img = document.createElement('img')
-    img.setAttribute('src', `${user.avatar_url}`)
+    img.setAttribute('src', `${DatasUser.avatar_url}`)
     img.setAttribute('alt', 'foto do usuario')
     img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
     const divFollowing = document.createElement('p')
-    divFollowing.innerHTML = `seguindo: ${user.following}`
+    divFollowing.innerHTML = `seguindo: ${DatasUser.following}`
     divFollowing.setAttribute('style', 'float: left;')
 
     const divFollowers = document.createElement('p')
-    divFollowers.innerHTML = `seguidores: ${user.followers}`
+    divFollowers.innerHTML = `seguidores: ${DatasUser.followers}`
     divFollowers.setAttribute('style', 'float: right;')
 
     div.appendChild(divFollowing)
@@ -73,7 +73,7 @@ async function findRepositories(user) {
     }
 }
 
-function show_data_repositories(repos) {
+function show_data_repositories(DatasRepositories) {
     const ul = document.querySelector('ul')
     ul.innerHTML = ''
     const h4 = document.querySelector('h4')
@@ -81,7 +81,7 @@ function show_data_repositories(repos) {
 
     try {
 
-        createElementsRepositories(repos, ul)
+        createElementsRepositories(DatasRepositories, ul)
         
     } catch (error) {
         const divRepositories = document.querySelector('div#repositories')
