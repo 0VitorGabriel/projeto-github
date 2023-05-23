@@ -48,12 +48,12 @@ function createElementsUser(DatasUser) {
     img.setAttribute('class', 'rounded mx-auto d-block w-25 p-3')
 
     const divFollowing = document.createElement('p')
-    divFollowing.innerHTML = `seguindo: ${DatasUser.following}`
     divFollowing.setAttribute('style', 'float: left;')
+    divFollowing.innerHTML = `seguindo: ${DatasUser.following}`
 
     const divFollowers = document.createElement('p')
-    divFollowers.innerHTML = `seguidores: ${DatasUser.followers}`
     divFollowers.setAttribute('style', 'float: right;')
+    divFollowers.innerHTML = `seguidores: ${DatasUser.followers}`
 
     div.appendChild(divFollowing)
     div.appendChild(divFollowers)
