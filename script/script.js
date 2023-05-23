@@ -76,7 +76,8 @@ async function findRepositories(user) {
 function show_data_repositories(repos) {
     const ul = document.querySelector('ul')
     ul.innerHTML = ''
-    const h4 = document.querySelector('h4').style.display = 'inline'
+    const h4 = document.querySelector('h4')
+    h4.style.display = 'inline'
 
     try {
 
